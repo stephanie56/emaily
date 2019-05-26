@@ -1,13 +1,15 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const keys = require('./config/keys');
-require('./services/passport');
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+require("./services/passport");
 
-mongoose.connect(keys.mongoURI);
+const authRoutes = require("./routes/authRoutes");
+
+mongoose.connect(process.env.DB_URI);
 
 const app = express();
 
-require('./routes/authRoutes')(app);
+authRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
