@@ -1,17 +1,18 @@
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const mongoose = require("mongoose");
+import passport, { Profile } from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import mongoose from "mongoose";
+import { IUser } from "../models/User";
 
-const User = mongoose.model("users");
+const User = mongoose.model("user");
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user: IUser, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
   User.findById(id)
-    .then(user => done(null, user))
-    .catch(err => console.log(err));
+    .then((user: IUser) => done(null, user))
+    .catch((err: Error) => console.error(err));
 });
 
 passport.use(
@@ -22,7 +23,7 @@ passport.use(
       callbackURL: "/auth/google/callback"
     },
     // Callback to handle access token and profile we get from google
-    (accessToken, refreshToken, profile, done) => {
+    (accessToken: string, refreshToken: string, profile: Profile, done) => {
       User.findOne({ googleId: profile.id })
         .then(existingUser => {
           if (!!existingUser) {

@@ -1,17 +1,17 @@
 require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cookieSession = require("cookie-session");
-const passport = require("passport");
+import express from "express";
+import mongoose from "mongoose";
+import cookieSession from "cookie-session";
+import passport from "passport";
 require("./models/User");
 require("./services/passport");
 
-const authRoutes = require("./routes/authRoutes");
+import authRoutes from "./routes/authRoutes";
 
 mongoose
   .connect(process.env.DB_URI, { useNewUrlParser: true })
-  .then(_ => console.log("Connected to DB success!"))
-  .catch(err => console.log(err));
+  .then((_: any) => console.log("Connected to DB success!"))
+  .catch((err: Error) => console.error(err));
 
 const app = express();
 app.use(

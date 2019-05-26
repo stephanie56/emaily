@@ -2,10 +2,9 @@
   "name": "emaily",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "ts-node ./index.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +16,15 @@
     "mongoose": "^5.5.11",
     "nodemon": "^1.19.1",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/cookie-session": "^2.0.37",
+    "@types/mongoose": "^5.5.3",
+    "@types/passport": "^1.0.0",
+    "@types/passport-google-oauth20": "^2.0.0"
   }
 }
